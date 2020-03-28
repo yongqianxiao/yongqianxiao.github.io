@@ -1,0 +1,109 @@
+---
+layout:     post
+title:      PCA降维原理
+subtitle:   为什么对数据集进行SVD和内积矩阵特征分解可以主成分分析
+date:       2020-03-29
+author:     烟酒僧
+header-img: 
+catalog: 	 true
+tags:
+    - PCA
+    - SVD
+	- 特征分解
+---
+
+## 前言
+
+这篇笔记结合了多篇博客，总结这篇笔记，是因为每次忘了PCA都重新找资料，挺麻烦，所以把找的资料整理成这篇笔记，方便自己以后再回顾，也希望可以帮助到正在学习PCA的各位，参考的资料中，我知道出处的，我会在笔记中写出，如果有我没标出的，请告诉我，我会补上或删除。特征值分解、奇异值分解、PCA详见：
+
+ https://www.cnblogs.com/LeftNotEasy/archive/2011/01/19/svd-and-applications.html 
+
+## PCA 原理
+
+ 	一般来说，方差大的方向是信号的方向，方差小的方向是噪声的方向，我们在数据挖掘中或者数字信号处理中，往往要提高信号与噪声的比例，也就是信噪比。
+
+ 	PCA的全部工作简单点说，就是对原始的空间中顺序地找一组相互正交的坐标轴，第一个轴是使得方差最大的，第二个轴是在与第一个轴正交的平面中使得方差最大的，第三个轴是在与第1、2个轴正交的平面中方差最大的，这样假设在N维空间中，我们可以找到N个这样的坐标轴，我们取前r个去近似这个空间，这样就从一个N维的空间压缩到r维的空间了，但是我们选择的r个坐标轴能够使得空间的压缩使得数据的损失最小。如此，PCA就是要找到多个主成分，以代替原来的特征，有点坐标变换的意思。
+
+### 1. PCA降维为什么就是对协方差矩阵进行特征分解？
+
+这一部分资料是来自实验室学卿大佬的笔记整理而来，已经过其同意，这部分资料也可能是由他由网上某博客找来，如有知道来源，请告知，我会加上来源链接。
+
+设当前有数据集$X \in \mathbb{R}^{n\times m}$, 其中$m$ 表示样本数，$x_i \in \mathbb{R}^{n\times 1}$ 表示特征维度, $\bar{X} \in \mathbb{R}^{n\times 1}$ 按行求各个特征维度的平均值。则将数据向量去中心化再投影到某一单位向量$e$ 上，其长度为向量积$e^T(x_i-\bar{X})$， 其中$e^Te=1$。该数据集的方差为：
+$$
+\sigma ^2=\frac{1}{n}\sum_{i=1}^n{\left[ e^T\left( x_i-\bar{X} \right) \right] ^2} \tag{1}
+$$
+首先要求第一个轴上的单位向量，使得数据集在该单位向量上的投影方差最大：
+$$
+\begin{aligned}
+\sigma ^2= & \frac{1}{n}\sum_{i=1}^n{\left[ e^T\left( x_i-\bar{X} \right) \right] ^2} \\
+= &\frac{1}{n}\sum_{i=1}^n{\left[ e^T\left( x_i-\bar{X} \right) \right] \left[ e^T\left( x_i-\bar{X} \right) \right] ^T} \\
+= &\frac{1}{n}\sum_{i=1}^n{\left[ e^T\left( x_i-\bar{X} \right) \left( x_i-\bar{X} \right) ^Te \right]}\\
+= &e^T\left[ \frac{1}{n}\left( x_i-\bar{X} \right) \left( x_i-\bar{X} \right) ^T \right] e\\
+= &e^T\varSigma e
+\end{aligned} \tag{2}
+$$
+其中$\varSigma$ 为协方差矩阵。因为我们要求得使$\sigma^2$最大的$e_1$：
+$$
+e_1=\argmax_e\left( e^T\varSigma e \right) \tag{3}
+$$
+由拉格朗日函数求极值：
+$$
+L\left( e,\lambda \right) =e^T\varSigma e+\lambda \left( 1-e^Te \right) \tag{4}
+$$
+其中$\lambda > 0$为拉格朗日乘数，$e^Te=1$为等式约束。分别对$e$和$\lambda$求偏导：
+$$
+\begin{aligned}
+\frac{\partial L}{\partial e}=&2\varSigma e-2\lambda e=0,\\
+\frac{\partial L}{\partial \lambda}=&1-e^Te=0\\
+\Longrightarrow& \varSigma e=\lambda e,e^Te=1
+\end{aligned} \tag{5}
+$$
+
+
+可以看出，当 $\lambda$ 对应 $\varSigma$ 的特征值，而 $e$ 为 $\lambda $ 对应的单位特征向量时，即求得单位向量 $e$, 而 
+$$
+\sigma ^2=e^T\varSigma e=\lambda e^Te=\lambda \tag{6}
+$$
+可以看出，当取最大特征值时，对应的方差最大，设此时的最大特征值为 $\lambda_1$，对应单位特征向量 $e_1$，同理，第二个轴即为第二大的特征值 $\lambda_2$ 对应的单位特征向量 $e_2$ ，以此类推，取前 $r$ 个最大的特征值， 对应 $r$ 个单位特征向量，组成矩阵 $W$, 则可以将原数据集 $X$ 投影到新的轴上，不做降维时，$W\in \mathbb{R}^{n \times n}$， 取前 $r$ 个特征值时，由$n\rightarrow r$，$W\in \mathbb{n \times r}$：
+$$
+Y = W^T(X-\bar{X})=[e_1, e_2, \dots, e_r]^T(X-\bar{X}) \tag{7}
+$$
+则样本方差之和为协方差矩阵对角线的之和，即为协方差矩阵的秩：
+$$
+tr\left( \varSigma \right) =\lambda _1+\lambda _2+\cdots \lambda _n \tag{8}
+$$
+
+### 2. 为什么对$X$进行SVD分解或者对内积矩阵$X^TX$做特征分解也可以做PCA降维
+
+这部分内容主要来自知友 li Eta的回答 https://www.zhihu.com/question/39234760/answer/80323126 
+
+对数据集按行求均值，然后就可以对数据集进行中心化了，即新数据集的均值为0。**此处假设$X$是经过中心化处理的**，则协方差矩阵为$\frac{1}{n}XX^T$, 而PCA的目标就是求使方差最大的特征向量（第1问中）：
+$$
+\begin{aligned}
+& \underset{W}{\argmax}st\left( W^TXX^TW \right) \ \\
+& s.t.\ W^TW=I 
+\end{aligned} \tag{9}
+$$
+对 $X$ 做SVD分解，则：
+$$
+\begin{aligned}
+X = &D\varLambda V^T\\
+XX^T =& D\varLambda^2 D^T 
+\end{aligned} \tag{10}
+$$
+其中$\varLambda$ 为奇异值组成的对角矩阵，由(7)可知$W=D$，即投影矩阵就是单位特征向量组成的矩阵，可以通过(7)来进行降维。至此，通过直接对$X$进行SVD分解，也可以达到PCA降维的效果：
+$$
+Y=D^TD\varSigma V^T=\varLambda V^T \tag{11}
+$$
+对内积矩阵 $X^TX$ 做特征分解，也相当于对$X$做SVD分解，可以
+$$
+X^TX=V\varLambda ^TD^TD\varLambda V^T=V\varLambda ^2V^T=V\varOmega V^T \tag{12}
+$$
+其中$\Omega$为内积矩阵特征分解后得到的特征值组成的对角矩阵，则同样可以达到(12)降维的目标：
+$$
+Y=\sqrt{\varOmega}V^T=\varLambda V^T \tag{13}
+$$
+因此，对内积矩阵进行特征分解，也是可以进行PCA降维。
+
+如有错误，希望能指出来，相互提升，谢谢。
+
