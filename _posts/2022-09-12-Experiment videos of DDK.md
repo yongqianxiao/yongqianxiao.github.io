@@ -16,7 +16,7 @@ tags:
 
 ## Videos
 
-Our work has been submitted to ICRA 2023. The simulation code in CarSim environment can be downloaded (https://github.com/yongqianxiao/DDK). It includes the config file of the CarSim environment and the code for simulation controlling. This blog aims to show the experiment videos.
+Our work has been submitted to ICRA 2023. The simulation code in CarSim environment can be downloaded (https://github.com/yongqianxiao/DDK). It includes the config file of the CarSim environment, the whole datasets, and the code for simulation controlling. Based on these files, you can restore the simulation in the paper. This blog aims to show the experiment videos.
 
 The following video is corresponding to the experiment scenes in the paper. If you cannot watch the video fluently, you can download it by the link https://od.lk/d/ODFfNjI3MTgyODNf/DDK4TT_20220805_1303_4min.mp4.
 <video src="https://od.lk/s/ODFfNjI3MTgyODNf/DDK4TT_20220805_1303_4min.mp4" controls></video>
