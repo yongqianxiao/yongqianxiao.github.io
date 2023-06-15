@@ -38,6 +38,7 @@ The video of more experiment scenes is as follows, and it can be downloaded at h
 
 Because the training set data of the DDK vehicle model are all collected from urban roads, in order to verify the generalization performance of our method, we have recently added real-world experiments on off-road roads. 
 The track results and experiment videos (download link: https://od.lk/d/ODFfNjc3MzAxNDNf/off_road.mp4) are as follows:
+![classic RNN](https://od.lk/s/ODFfNjc3MzAxNjhf/off_road_ref.png)
 ![classic RNN](https://od.lk/s/ODFfNjc3MzAxNDJf/DKMPC_track_result.png)
 
 <video src="https://od.lk/s/ODFfNjc3MzAxNDNf/off_road.mp4" controls></video>
