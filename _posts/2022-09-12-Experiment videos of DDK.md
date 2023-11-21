@@ -16,7 +16,7 @@ tags:
 
 ## Videos
 
-This is an improvement work from our previous work:
+This is an improvement work from our previous paper:
 @ARTICLE{xiao2023deep,
 	author={Xiao, Yongqian and Zhang, Xinglong and Xu, Xin and Liu, Xueqing and Liu, Jiahang},
 	journal={IEEE Transactions on Intelligent Vehicles}, 
@@ -27,7 +27,9 @@ This is an improvement work from our previous work:
 	pages={135-146},
 	doi={10.1109/TIV.2022.3180337}}
 
-Our work has been accepted to ICRA 2023. The simulation code in CarSim environment can be downloaded (https://github.com/yongqianxiao/DDK). It includes the config file of the CarSim environment, the whole datasets, and the code for simulation controlling. Based on these files, you can restore the simulation in the paper. This blog aims to show the experiment videos.
+Different from our previous work, this paper proposes a new modeling method, namely Deep Koopman Approach for Eigenfeatures Learning (DKEL, 深度Koopman本征学习方法). DKEL has significantly improved the modeling accuracy, and the vehicle model trained using urban road data can adapt to off-road roads (verified through control experiments).
+
+**Our work has been accepted for ICRA 2023. ** The simulation code in the CarSim environment is available for download at (https://github.com/yongqianxiao/DDK). This includes the configuration file for the CarSim environment, the entire dataset, and the code for simulation control. With these files, you will be able to reproduce the simulations discussed in the paper. This blog aims to showcase the experiment videos.
 
 The following video is corresponding to the experiment scenes in the paper. If you cannot watch the video fluently, you can download it by the link https://od.lk/s/ODFfNjI4MDMzMjBf/DDK_ICRA2023.mp4.
 <video src="https://od.lk/s/ODFfNjI4MDMzMjBf/DDK_ICRA2023.mp4" controls></video>
