@@ -27,7 +27,7 @@ This is an improvement work from our previous paper:
 	pages={135-146},
 	doi={10.1109/TIV.2022.3180337}}
 
-Different from our previous work, this paper proposes a new modeling method for modeling vehicle dynamics, namely Deep Koopman Approach for Eigenfeatures Learning (DKEL, 深度Koopman本征学习方法). DKEL has significantly improved the modeling accuracy, and the vehicle model trained using urban road data can adapt to off-road roads (verified through control experiments).
+Different from our previous work, this paper proposes a new modeling method for modeling vehicle dynamics, namely Deep Koopman Approach for Eigenfeatures Learning (DKEL, 深度Koopman本征学习方法) or Deep Direct Koopman (DDK, 深度直接Koopman). DKEL has significantly improved the modeling accuracy, and the vehicle model trained using urban road data can adapt to off-road roads (verified through control experiments).
 
 **Our work has been accepted for ICRA 2023. ** The simulation code in the CarSim environment is available for download at (https://github.com/yongqianxiao/DDK). This includes the configuration file for the CarSim environment, the entire dataset, and the code for simulation control. With these files, you will be able to reproduce the simulations discussed in the paper. This blog aims to showcase the experiment videos.
 
