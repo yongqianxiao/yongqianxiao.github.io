@@ -44,8 +44,3 @@ The track results and experiment videos (download link: https://od.lk/d/ODFfNjc3
 ![classic RNN](https://od.lk/s/ODFfNjc3MzAxNDJf/DKMPC_track_result.png)
 
 <video src="https://od.lk/s/ODFfNjc3MzAxNDNf/off_road.mp4" controls></video>
-
-In addition, we also added some simulations on off-road roads in CarSim.
-The simulation video can be downloaded at https://od.lk/s/ODFfNzA4NDA4MDlf/Offroad_30kmh.mp4.
-
-<video src="https://od.lk/s/ODFfNzA4NDA4MDlf/Offroad_30kmh.mp4" controls></video>
