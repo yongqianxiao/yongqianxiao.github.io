@@ -17,8 +17,6 @@ tags:
 
 ## Experiment Videos
 
-The videos of this page are corresponding to the experiments in my PhD thesis. If things go well, this work will be submitted to ICRA 2024.
-
 The experiments videos include three scenes, i.e., U-Turn, roundabout, and off-road.
 <img src="https://od.lk/s/ODFfNjkxODI0ODlf/U_turn_for_SC_done_paper.png" alt="classic RNN" style="zoom:50%;" />
 <img src="https://od.lk/s/ODFfNjkxODI0ODhf/Roundabout_done_for_SC_paper.png" alt="classic RNN" style="zoom:50%;" />
